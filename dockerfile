@@ -2,18 +2,13 @@
 FROM nginx:alpine
 
 # Set the working directory inside the container
-WORKDIR /usr/share/nginx/html
-RUN rm -rf /usr/share/nginx/html/*
-
+RUN rm /etc/nginx/conf.d/default.conf
 
 # Copy your HTML and CSS files to the working directory
-COPY finally.html .
-COPY style.css .
-COPY yes.html .
-COPY nextpage.html . 
-
-RUN chown -R nginx:nginx /usr/share/nginx/html && \
-    chmod -R 755 /usr/share/nginx/html
+COPY finally.html /usr/share/nginx/html/
+COPY style.css /usr/share/nginx/html/
+COPY yes.html /usr/share/nginx/html/
+COPY nextpage.html /usr/share/nginx/html/
 
 # Expose the default Nginx port
 EXPOSE 80
